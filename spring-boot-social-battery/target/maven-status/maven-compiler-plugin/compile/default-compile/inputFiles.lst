@@ -1,0 +1,10 @@
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/model/Role.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/repository/UserRepository.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/config/SecurityConfiguration.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/service/UserServiceImpl.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/model/User.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/RegistrationLoginSpringBootSecurityThymeleafApplication.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/service/UserService.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/web/MainController.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/web/UserRegistrationController.java
+/home/ecem/eclipse-workspace/registration-login-spring-boot-security-thymeleaf-hibernate/src/main/java/net/javaguides/springboot/web/dto/UserRegistrationDto.java

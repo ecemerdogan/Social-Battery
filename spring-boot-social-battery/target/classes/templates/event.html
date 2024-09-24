@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Battery</title>
+
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+	<link rel="icon" type="image/png" href="images/battery.png">
+	
+    <style>
+    body {
+    
+    background-size: cover;
+    background-position: center;
+    background-color: #FBF7F0;
+  }
+    	.navbar {
+		    background-color: #85586F; 
+		    position: relative;
+		    z-index: 1;
+		  }
+
+		 .navbar .navbar-brand {
+		    color: #ffffff; 
+		    text-align: justify; 
+  			text-align-last: right;
+		  }
+		  .navbar .navbar-nav.navbar-right li a {
+		    background-color: #85586F
+		}
+		  
+	     .event-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-container:hover {
+            transform: scale(1.15);
+        }
+
+        .event-image {
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        .dark-mode {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+       
+		.dark-mode-toggle {
+            position: fixed;
+    		top: 14px; 
+    		right: 20px;
+    		z-index: 999; 
+        }
+
+        .events-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+
+        .event-card {
+            flex-basis: calc(25% - 20px);
+            margin-bottom: 20px;
+        }
+
+
+        .event-card .event-content {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .event-card .event-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .event-card .event-name {
+            margin-top: 10px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div id="navbar" class="collapse navbar-collapse">
+    		<ul class="nav navbar-nav">
+		        <li><a href="#" th:href="@{/}">Home</a></li>
+		        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+    		</ul>
+
+    		 <a class="navbar-brand" style="text-align:right">SOCIAL BATTERY BY ECEM & SINEM</a>
+		</div>
+
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Suggested Events</h1>
+        You completed the survey <span sec:authentication="principal.username"> User</span>
+        <br><br>
+        <br><i>Here are the suggested events based on your answers. Clicking on them will lead you to related websites!</i><br>
+        <br><br>       
+        <!-- Display random events information -->
+        <div class="events-row">
+            <div th:each="event : ${events}" class="event-card">
+                <div class="event-container">
+                    <div class="event-content">
+                        <h4>
+                            <a th:href="@{${event.eventLink}}" target="_blank" th:text="${event.eventName}"></a>
+                        </h4>
+                        <img class="event-image" th:src="@{'/images/' + ${event.eventImage}}" alt="Description of the image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <!-- Toggle Dark Mode button -->
+    <button onclick="toggleDarkMode()" class="dark-mode-toggle"style= background-color:#FBF7F0>Dark Mode</button>
+    
+</body>
+</html>

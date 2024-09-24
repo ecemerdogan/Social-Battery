@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Social Battery</title>
+
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+  	<link rel="icon" type="image/png" href="images/battery.png">
+  
+<style>
+  body {
+    
+    background-size: cover;
+    background-position: center;
+    background-color: #FBF7F0;
+  }
+  h4.center-text{
+    text-align: center;
+  }
+    .custom-button {
+    background-color: #85586F;
+}
+  .navbar {
+    background-color: #85586F; /* Change the color here */
+  }
+
+  .navbar .navbar-brand {
+    color: #ffffff; /* Change the text color here */
+  }
+
+  .navbar .navbar-nav li a {
+    color: #ffffff; /* Change the link color here */
+  }
+  .container {
+    margin-top: 10px;
+  }
+  
+  .login-card {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+    width: 450px;
+		height: 420px;
+    margin: 0 auto;
+    background-color: #FFE6E6;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-card .panel-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .login-card .form-group label {
+    font-weight: bold;
+    width: 50%;
+  }
+
+  .login-card .btn-primary {
+    width: 100%;
+    margin-top: 2px;
+    }
+
+  .login-card .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+</style>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+          <a class="navbar-brand"> SOCIAL BATTERY BY ECEM & SINEM</a>
+          
+      </div>
+    </div>
+  </nav>
+  
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <!-- Login Card -->
+        <br><br>
+        <br><br>
+        <br><br>
+        <div class="login-card">
+
+          <div class="form-container">
+            <h1 class="panel-title">User Login</h1>
+            <form th:action="@{/login}" method="post">
+
+              <!-- error message -->
+              <div th:if="${param.error}">
+                <div class="alert alert-danger">Invalid email or password.</div>
+              </div>
+
+              <!-- logout message -->
+              <div th:if="${param.logout}">
+                <div class="alert alert-info">You have been logged out.</div>
+              </div>
+              
+
+              <div class="form-group">
+                <label for="username">Email:</label>
+                <input type="text" class="form-control" id="username" name="username"
+                  placeholder="Enter Email" autofocus="autofocus">
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"
+                  class="form-control" placeholder="Enter Password" />
+              </div>
+              <div class="form-group">
+                <div class="row events-row">
+                  <div class="col-sm-6">
+                    <input type="submit" name="login-submit" id="login-submit"
+                      class="form-control btn btn-primary custom-button" value="Log In" style= background-color:#85586F/>
+                  </div>
+                  <div class="col-sm-6">
+                    <span> New user? <a href="/" th:href="@{/registration}">Register here</a></span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
