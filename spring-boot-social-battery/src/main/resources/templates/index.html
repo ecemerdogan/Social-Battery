@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Social Battery</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="icon" type="image/png" href="images/battery.png">
+    <style>
+    		body {
+    
+    background-size: cover;
+    background-position: center;
+    background-color: #FBF7F0;
+  }
+    .custom-button {
+    background-color: #85586F;
+}
+       	   .navbar {
+		    background-color: #85586F; 
+		    height: 50px;
+		  }
+		 .navbar .navbar-brand {
+		    color: #ffffff;
+		    text-align: justify; 
+  			text-align-last: right;
+		  }
+		
+
+		  .navbar .navbar-nav.navbar-right li a {
+		    background-color: #85586F
+		}
+        #calendar {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dark-mode {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 14px;
+            right: 20px;
+        }
+
+        .calendar-container {
+            position: fixed;
+            top: 150px;
+            right: 955px;
+            width: 300px;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+         .weather-info {
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .table-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div id="navbar" class="collapse navbar-collapse">
+    		<ul class="nav navbar-nav">
+		        <li><a href="#" th:href="@{/}">Home</a></li>
+		        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+    		</ul>
+
+    		 <a class="navbar-brand" style="text-align:right">SOCIAL BATTERY BY ECEM & SINEM</a>
+		</div>
+
+
+    <div class="container">
+        <h1>Home Page</h1>
+        <p>Welcome <span sec:authentication="principal.username">User</span></p>
+
+        
+        <!-- Display weather information -->
+ 
+    <div class="wrapper">
+  <div class="widget-container">
+    <div class="top-left">
+      <h1 class="city" th:text="${weatherInfo.name}">Weather Widget App</h1>
+     
+      <h3> <span th:text="${weatherInfo.weather[0].description}"></span></h2> 
+      <p class="geo"></p>
+    </div>
+    <div class="top-right">
+      <h1 id="weather-status">Weather / Weather Status</h1>
+      <img class="weather-icon" src="https://myleschuahiock.files.wordpress.com/2016/02/sunny2.png">
+      <!-- <td><img th:src="'http://openweathermap.org/img/w/' + ${weatherInfo.weather[0].icon} + '.png'" alt="Weather Icon"></td> -->
+    </div>
+    <div class="horizontal-half-divider"></div>
+    <div class="bottom-left">
+      <h1 id="temperature"><span th:text="${weatherInfo.mainInfo.temp}"></span></h1>
+      <h2 id="fahrenheit">&degF</h2>
+    </div>
+    <div class="vertical-half-divider"></div>
+    <div class="bottom-right">
+      <div class="other-details-key">
+        <p>Wind Speed</p>
+        <p>Humidity</p>
+        <p>Pressure</p>
+      </div>
+      <div class="other-details-values">
+        <p class="windspeed"><span th:text="${weatherInfo.wind.speed}"></span></p>
+        <p class="humidity"><span th:text="${weatherInfo.mainInfo.humidity}"></span></p>
+        <p class="pressure"><span th:text="${weatherInfo.mainInfo.pressure}"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+        <!-- Button for the survey -->
+        <div class="survey-button">
+        <a class="btn btn-primary custom-button" href="/questions">Survey</a>
+        </div>
+    </div>
+
+    <!-- Toggle Dark Mode button -->
+    <button onclick="toggleDarkMode()" class="dark-mode-toggle"style= background-color:#FBF7F0>Dark Mode</button>
+
+    <!-- Calendar container -->
+    <div class="container2">
+    <div id="calendar-container" class="calendar-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        $(document).ready(function() {
+            $('#calendar-container').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultView: 'month',
+                editable: true,
+                eventLimit: true,
+                events: [
+                ],
+                dayClick: function(date, jsEvent, view) {
+                    var enteredText = prompt('Enter text for ' + date.format('YYYY-MM-DD'));
+
+                    if (enteredText) {
+
+                        var newEvent = {
+                            title: enteredText,
+                            start: date.format('YYYY-MM-DD'),
+                            allDay: true
+                        };
+
+                        $('#calendar-container').fullCalendar('renderEvent', newEvent, true);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

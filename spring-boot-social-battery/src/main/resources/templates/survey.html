@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Social Battery</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="icon" type="image/png" href="images/battery.png">
+	
+    <style>
+    	body {
+    
+    background-size: cover;
+    background-position: center;
+    background-color: #FBF7F0;
+  }
+  .custom-button {
+    background-color: #85586F;
+}
+        .survey-title {
+            margin-bottom: 20px;
+            text-align: center; 
+        }
+
+        .question-row {
+            margin-bottom: 10px;
+            margin-left:20px; 
+        }
+
+        .choice-label {
+            display: block;
+            margin-left: 20px; 
+        }
+
+        .choice-label:hover,
+        .choice-label.selected {
+            background-color: #e1bee7; 
+        }
+
+        .question-separator {
+            border-top: 1px solid #ccc; 
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="survey-title">Social Battery Survey</h1>
+        <form class="survey-form" action="/submit" method="post">
+            <div th:each="question, questionIndex : ${questions}" class="question-row">
+                <p th:text="${question.question}"></p>
+                <div th:each="choice : ${choices}">
+                    <div th:if="${choice.question_id == question.id}">
+                        <label class="choice-label">
+                            <input type="radio" th:name="'answers[' + ${question.id} + ']'" th:value="${choice.id}"
+                                th:text="${choice.choice}" />
+                        </label>
+                    </div>
+                </div>
+                <div th:if="${questionIndex.last == false}" class="question-separator"></div>
+            </div>
+            <div style="text-align: center;">
+                <a class="btn btn-primary custom-button" href="#" th:href="@{/submit}">Submit</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
