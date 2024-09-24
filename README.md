@@ -3,7 +3,7 @@ Social Battery project is a web-based development that lets the users sign up to
 
 The coding process will be completed in 3 main parts:
 
--The design of the GUI will be done using HTML, CSS, jQuery.(This process can be done with Java as well.)
+- The design of the GUI will be done using HTML, CSS, jQuery.(This process can be done with Java as well.)
 
 - Web services between database and GUI will be developed thanks to RESTful API with Java. Several web requests will be sent when the user activity starts such as logging in, taking the survey.
   
@@ -11,9 +11,9 @@ The coding process will be completed in 3 main parts:
 
 This project is aimed to:
 
--Increase user’s sociality with suggested activities based on personalized data and weather conditions of that day,
+- Increase user’s sociality with suggested activities based on personalized data and weather conditions of that day,
 
--Avoid wasting time searching for the proper event for you in the different million websites,
+- Avoid wasting time searching for the proper event for you in the different million websites,
 
--Improve yourself in numerous fields even though intense work/school pressure. To sum up, our project’s goal is to help people by filtering numerous different data to suggest the best event based on his/her interests and needs which are detected from test results the user has filled in before. This will be a website where people charge their social battery!
+- Improve yourself in numerous fields even though intense work/school pressure. To sum up, our project’s goal is to help people by filtering numerous different data to suggest the best event based on his/her interests and needs which are detected from test results the user has filled in before. This will be a website where people charge their social battery!
 
